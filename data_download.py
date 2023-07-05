@@ -12,12 +12,11 @@ ee.Initialize()
 
 
 def acquire_image(start_date,end_date,study_area):
-    image = (ee.ImageCollection("COPERNICUS/S2")
+    image = (ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
              .filterBounds(study_area)
              .filterDate(start_date,end_date)
              .sort('CLOUDY_PIXEL_PERCENTAGE')
              .first()
-             .select('B[1-8]')
              .clip(study_area)
             )
     return image
